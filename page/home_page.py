@@ -7,6 +7,7 @@ class HomePage(BaseAction):
     # 首页 - 关闭更新按钮
     close_button = By.ID, "com.yunmall.lc:id/img_close"
 
+
     # 首页 - 我
     me_button = By.XPATH, "//*[@resource-id='com.yunmall.lc:id/tab_me' and @text='我']"
 

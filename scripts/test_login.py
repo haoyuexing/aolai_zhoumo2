@@ -18,16 +18,15 @@ class TestLogin:
         self.login_page = LoginPage(self.driver)
         self.reg_page = RegPage(self.driver)
 
-
     def teardown(self):
         time.sleep(3)
         self.driver.quit()
 
     @pytest.mark.parametrize("args", analyze_data("login_data", "test_login"))
     def test_login(self, args):
-
         username = args["username"]
         password = args["password"]
+        toast = args["toast"]
 
         # 点击关闭
         self.home_page.click_close()
@@ -41,3 +40,9 @@ class TestLogin:
         self.login_page.input_password(password)
         # 点击登录
         self.login_page.click_login()
+
+        if toast is None:
+            # 用用户名的形式断言
+            pass
+        else:
+            self.login_page.is_toast_exist(toast)
