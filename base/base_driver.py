@@ -15,6 +15,7 @@ def init_driver():
     desired_caps['appActivity'] = 'com.yunmall.ymctoc.ui.activity.MainActivity'
     # # 告诉 appium 不要重置应用
     # desired_caps['noReset'] = True
+    desired_caps['automationName'] = 'Uiautomator2'
 
     # 连接appium服务器
     return webdriver.Remote('http://192.168.31.50:4723/wd/hub', desired_caps)
