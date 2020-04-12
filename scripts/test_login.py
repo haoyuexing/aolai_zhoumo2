@@ -6,6 +6,7 @@ from base.base_analyze import analyze_data
 from base.base_driver import init_driver
 from page.home_page import HomePage
 from page.login_page import LoginPage
+from page.me_page import MePage
 from page.reg_page import RegPage
 
 
@@ -17,6 +18,7 @@ class TestLogin:
         self.home_page = HomePage(self.driver)
         self.login_page = LoginPage(self.driver)
         self.reg_page = RegPage(self.driver)
+        self.me_page = MePage(self.driver)
 
     def teardown(self):
         time.sleep(3)
@@ -43,6 +45,7 @@ class TestLogin:
 
         if toast is None:
             # 用用户名的形式断言
-            pass
+            assert self.me_page.get_nikename_text() == username
         else:
-            self.login_page.is_toast_exist(toast)
+            # 用toast的形式断言
+            assert self.login_page.is_toast_exist(toast)
