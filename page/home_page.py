@@ -18,3 +18,26 @@ class HomePage(BaseAction):
     # 点击 - 我
     def click_me(self):
         self.click(self.me_button)
+
+    def login_if_not(self, reg_page, login_page):
+        """
+        调用完成之后会停留在 "我" 的页面
+        :param reg_page:
+        :param login_page:
+        :return:
+        """
+        self.click_close()
+        self.click_me()
+        if self.driver.current_activity != "com.yunmall.ymctoc.ui.activity.LogonActivity":
+            return
+
+        # 点击已有账号去登陆
+        reg_page.click_login()
+        # 输入用户名
+        login_page.input_username("itfeat")
+        # 输入密码
+        login_page.input_password("itfeat123000")
+        # 点击登录
+        login_page.click_login()
+
+

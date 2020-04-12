@@ -1,7 +1,7 @@
 from appium import webdriver
 
 
-def init_driver():
+def init_driver(no_reset=True):
     desired_caps = dict()
     # 需要连接的手机的平台(不限制大小写)
     desired_caps['platformName'] = 'Android'
@@ -13,8 +13,9 @@ def init_driver():
     desired_caps['appPackage'] = 'com.yunmall.lc'
     # 需要启动的程序的界面名
     desired_caps['appActivity'] = 'com.yunmall.ymctoc.ui.activity.MainActivity'
-    # # 告诉 appium 不要重置应用
-    # desired_caps['noReset'] = True
+    # 告诉 appium 不要重置应用
+    desired_caps['noReset'] = no_reset
+    # 使用 uiautomator2
     desired_caps['automationName'] = 'Uiautomator2'
 
     # 连接appium服务器

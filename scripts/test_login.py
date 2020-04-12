@@ -13,7 +13,8 @@ from page.reg_page import RegPage
 class TestLogin:
 
     def setup(self):
-        self.driver = init_driver()
+        self.driver = init_driver(no_reset=False)
+
 
         self.home_page = HomePage(self.driver)
         self.login_page = LoginPage(self.driver)
@@ -23,6 +24,9 @@ class TestLogin:
     def teardown(self):
         time.sleep(3)
         self.driver.quit()
+
+    # def test_hello(self):
+    #     self.home_page.login_if_not(self.reg_page, self.login_page)
 
     @pytest.mark.parametrize("args", analyze_data("login_data", "test_login"))
     def test_login(self, args):
