@@ -24,3 +24,5 @@ class TestUpdate:
         self.page.setting.click_about()
         # 关于 - 点击 版本更新
         self.page.about.click_update()
+        # 断言
+        assert self.page.about.is_update_now_exist()

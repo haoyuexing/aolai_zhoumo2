@@ -30,6 +30,13 @@ class BaseAction:
     def get_text(self, feature, timeout=10.0, poll_frequency=1.0):
         return self.find_element(feature, timeout, poll_frequency).text
 
+    def is_feature_exist(self, feature):
+        try:
+            self.find_element(feature)
+            return True
+        except Exception as e:
+            return False
+
     def is_toast_exist(self, text, timeout=3, poll_frequency=0.1):
         # 用toast断言
         try:
