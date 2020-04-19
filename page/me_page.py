@@ -7,5 +7,11 @@ class MePage(BaseAction):
 
     nikename_text_view = By.ID, "com.yunmall.lc:id/tv_user_nikename"
 
+    # 设置按钮
+    setting_button = By.ID, "com.yunmall.lc:id/ymtitlebar_left_btn_image"
+
     def get_nikename_text(self):
         return self.get_text(self.nikename_text_view)
+
+    def click_setting(self):
+        self.click(self.setting_button)
