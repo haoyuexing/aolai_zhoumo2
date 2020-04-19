@@ -4,6 +4,7 @@ from page.login_page import LoginPage
 from page.me_page import MePage
 from page.reg_page import RegPage
 from page.setting_page import SettingPage
+from page.vip_page import VipPage
 
 
 class Page:
@@ -34,3 +35,7 @@ class Page:
     @property
     def setting(self):
         return SettingPage(self.driver)
+
+    @property
+    def vip(self):
+        return VipPage(self.driver)

@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -105,3 +107,21 @@ class BaseAction:
                 return self.find_element(feature)
             except:
                 self.scroll_page_one_time(direction)
+
+    def is_keyword_in_page_source(self, keyword, timeout=5, poll_frequency=0.1):
+        """
+        查找某个关键字是否在当前的page_source中
+        :param keyword: 关键字
+        :param timeout: 超时时间
+        :param poll_frequency: 频率
+        :return:
+        """
+        end_time = time.time() + timeout
+        while True:
+            if keyword in self.driver.page_source:
+                return True
+            else:
+                time.sleep(poll_frequency)
+                if time.time() > end_time:
+                    break
+        return False
