@@ -19,6 +19,9 @@ class BaseAction:
     def find_element(self, feature, timeout=10.0, poll_frequency=1.0):
         return WebDriverWait(self.driver, timeout, poll_frequency).until(lambda x: x.find_element(*feature))
 
+    def find_elements(self, feature, timeout=10.0, poll_frequency=1.0):
+        return WebDriverWait(self.driver, timeout, poll_frequency).until(lambda x: x.find_elements(*feature))
+
     def click(self, feature, timeout=10.0, poll_frequency=1.0):
         self.find_element(feature, timeout, poll_frequency).click()
 

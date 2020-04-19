@@ -34,3 +34,11 @@ class TestClearCache:
         # 新增地址 - 点击 设为默认地址
         self.page.edit_address.click_default()
 
+        # 新增地址 - 点击 所在区域
+        self.page.edit_address.click_region()
+        # 区域选择 - 选择省市区
+        self.page.region.choose_region()
+
+        # 编辑地址 - 点击 保存
+        self.page.edit_address.click_save()
+
