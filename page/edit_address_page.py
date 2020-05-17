@@ -20,6 +20,7 @@ class EditAddressPage(BaseAction):
     # 保存
     save_button = By.XPATH, "//*[@text='保存']"
 
+
     def input_name(self, text):
         self.input(self.name_edit_text, text)
 

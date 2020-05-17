@@ -1,0 +1,31 @@
+test_add_address:
+#  test_add_address_001:
+#    name: "张三"
+#    phone: "18888888888"
+#    detail: "三单元 202"
+#    post_code: "200000"
+#    toast: null
+#  test_add_address_002:
+#    name: "张三"
+#    phone: "188888888"
+#    detail: "三单元 202"
+#    post_code: "200000"
+#    toast: "11位手机号"
+  test_add_address_003:
+    name: "123123"
+    phone: "18888888888"
+    detail: ""
+    post_code: "200000"
+    toast: "请输入详细地址"
+#  test_add_address_004:
+#    name: "111"
+#    phone: "18888888888"
+#    detail: "三单元 202"
+#    post_code: "123"
+#    toast: "邮政编码错误，请输入6位数字"
+#  test_add_address_005:
+#    name: "111"
+#    phone: "18888888888"
+#    detail: "三单元 202"
+#    post_code: ""
+#    toast: null
