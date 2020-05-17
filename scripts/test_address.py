@@ -18,6 +18,20 @@ class TestClearCache:
         time.sleep(3)
         self.driver.quit()
 
+    def test_delete_address(self):
+        # 如果没有登录就登录，停留在"我"的页面
+        self.page.home.login_if_not(self.page)
+        # 我 - 点击 设置
+        self.page.me.click_setting()
+        # 设置 - 点击 地址管理
+        self.page.setting.click_address()
+        # 地址列表删除10次
+        self.page.address_list.delete_all_address()
+
+        # 断言是否有默认标记，如果有则脚本失败
+        assert not self.page.address_list.is_default_exist()
+
+
     def test_edit_address(self):
 
         # 创建一个 faker 对象
