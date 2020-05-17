@@ -1,6 +1,7 @@
 import time
 
 import pytest
+import faker
 
 from base.base_analyze import analyze_data
 from base.base_driver import init_driver
@@ -16,6 +17,41 @@ class TestClearCache:
     def teardown(self):
         time.sleep(3)
         self.driver.quit()
+
+    def test_edit_address(self):
+
+        # 创建一个 faker 对象
+        f = faker.Faker("zh_CN")
+
+        name = f.name()
+        phone_number = f.phone_number()
+
+        # 如果没有登录就登录，停留在"我"的页面
+        self.page.home.login_if_not(self.page)
+        # 我 - 点击 设置
+        self.page.me.click_setting()
+        # 设置 - 点击 地址管理
+        self.page.setting.click_address()
+        # 地址列表 - 点击默认的地址
+        self.page.address_list.click_default()
+        # 编辑页面 - 修改收件人
+        self.page.edit_address.input_name(name)
+        # 编辑页面 - 修改手机号
+        self.page.edit_address.input_phone(phone_number)
+        # 编辑页面 - 修改详细地址
+        self.page.edit_address.input_detail(f.street_address() + f.building_number())
+        # 编辑页面 - 修改邮编
+        self.page.edit_address.input_post_code(f.postcode())
+        # 编辑页面 - 修改所在地区
+        self.page.edit_address.click_region()
+        self.page.region.choose_region()
+        # 编辑页面 - 点击保存
+        self.page.edit_address.click_save()
+
+        # 断言 点击保存之后，是否会出现保存成功的toast
+        assert self.page.address_list.is_toast_exist("保存成功")
+        # 断言 保存完成之后，第一个的姓名和电话是否是修改过后的内容
+        assert self.page.address_list.get_name_and_phone_text() == "%s  %s" % (name, phone_number)
 
     @pytest.mark.parametrize("args", analyze_data("address_data", "test_add_address"))
     def test_add_address(self, args):
